@@ -1,0 +1,13 @@
+Creating ssh Key
+
+
+$ ssh-keygen -t rsa -f ~/.ssh/nandu-gcp-ssh-key -C naga12devops
+
+$ cat .ssh/nandu-gcp-ssh-key.pub
+
+$ download file --> /home/naga12debops/.ssh/nandu-gcp-ssh-key    # path mandatory
+ 
+$ /home/naga12devops/.ssh/nandu-gcp-ssh-key
+
+
+ansible myhost --sudo -m raw -a "yum install -y python2"

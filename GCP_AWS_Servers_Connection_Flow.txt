@@ -1,0 +1,44 @@
+Server 				Client
+----------			--------------
+
+Before Connect Must DO
+
+1. Must generate ssh-keygen	1. must enable passwordAuth yes
+   $ ssh-keygen 		   $ vim /etc/ssh/sshd_config    ( # EC2 uses keys for remote access
+								     PasswordAuthentication yes  )
+				   $ service sshd restart	 ( restart service )
+				   $ passwd ec2-user             ( give password : naga1212 )
+
+
+
+
+ 
+-Pem key login
+--------------------------
+
+ $ ssh -i raj.pem ec2-user@35.154.61.85   ( Copy pem key to server location )
+
+
+
+-SSH_Key_Gen 
+---------------------------
+
+$ ssh-copy-id ec2-user@35.154.61.85
+
+$ ssh ec2-user@35.154.61.85
+
+
+
+--Authorized_keys
+---------------------------
+
+  Copy Server Authorized_key 
+
+  $ cd /root/.ssh
+  $ vim authorized_keys
+   
+  copy key and paste it into client Authorized_keys ( paste in Authorized_keys file in bottom )
+  
+  $ ssh ec2-user@35.154.61.85    ( it will connect with out password of client )
+
+

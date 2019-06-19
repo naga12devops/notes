@@ -1,0 +1,37 @@
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+kubeadm join 172.31.23.89:6443 --token 1vuwt8.iwm6os7m1cib5nnu --discovery-token-ca-cert-hash sha256:8372c99d103e61febe71e215852cf8d66aabdef3b2b02c643aee7c748310ced7
+
+root@ip-172-31-23-89:~# history
+    1  apt-get update && apt-get upgrade
+    2  apt-get install -y apt-transport-https curl
+    3  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    4  cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+    5  deb https://apt.kubernetes.io/ kubernetes-xenial main
+    6  EOF
+    7  cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+    8  deb https://apt.kubernetes.io/ kubernetes-xenial main
+    9  EOF
+   10  apt-get update
+   11  apt-get install -y kubelet kubeadm kubectl
+   12  systemctl daemon-reload
+   13  systemctl restart kubelet
+   15  apt-get install -y docker.io
+   16  docker version
+   17  systemctl status docker
+   18  kubeadm init
+
+ubuntu@ip-172-31-23-89:~$ history
+    1  clear
+    2  sudo -i
+    3  mkdir -p $HOME/.kube
+    4  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    5  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    6  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    7  kubectl get nodes
+    8  kubectl get nodes -o wide
+    9  kubectl get pods -o wide
+   10  history

@@ -1,0 +1,75 @@
+Install kubectl
+-----------------
+# Download the kubectl.exe using a #  https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+# copy it some where like: C:/kube locations
+
+# Add the kubectl.exe folder location in path variable - 
+“Advanced System Settings -> Advanced -> Environment Variables -> Path”. 
+For example, if you have saved file to C:/kube 
+then add this folder path to the path variable.
+
+# Open a command prompt and type kubectl
+
+
+Install minikube
+---------------------
+# VT-x or AMD-v virtualization must be enabled in your computer’s BIOS.
+
+# Install the virtualization platform such as Virtualbox or KVM. You are not really required to configure the image.
+
+# Download the minikube-windows-amd64 file from here.  https://github.com/kubernetes/minikube/releases
+# Rename the file to minikube.exe
+# copy it some where like: C:/kube locations
+# Add the kubectl.exe folder location in path variable - 
+“Advanced System Settings -> Advanced -> Environment Variables -> Path”. 
+For example, if you have saved file to C:/kube 
+then add this folder path to the path variable.
+# Open the command prompt and fire a command minikube
+# open bash & type $ minikube start
+
+
+minikube
+Minikube is a CLI tool that provisions and manages single-node Kubernetes clusters optimized for development workflows.
+
+Usage:
+  minikube [command]
+
+Available Commands:
+  addons         Modify minikube's kubernetes addons
+  cache          Add or delete an image from the local cache.
+  completion     Outputs minikube shell completion for the given shell (bash or zsh)
+  config         Modify minikube config
+  dashboard      Access the kubernetes dashboard running within the minikube cluster
+  delete         Deletes a local kubernetes cluster
+  docker-env     Sets up docker env variables; similar to '$(docker-machine env)'
+  help           Help about any command
+  ip             Retrieves the IP address of the running cluster
+  kubectl        Run kubectl
+  logs           Gets the logs of the running instance, used for debugging minikube, not user code
+  mount          Mounts the specified directory into minikube
+  profile        Profile gets or sets the current minikube profile
+  service        Gets the kubernetes URL(s) for the specified service in your local cluster
+  ssh            Log into or run a command on a machine with SSH; similar to 'docker-machine ssh'
+  ssh-key        Retrieve the ssh identity key path of the specified cluster
+  start          Starts a local kubernetes cluster
+  status         Gets the status of a local kubernetes cluster
+  stop           Stops a running local kubernetes cluster
+  tunnel         tunnel makes services of type LoadBalancer accessible on localhost
+  update-check   Print current and latest version number
+  update-context Verify the IP address of the running cluster in kubeconfig.
+  version        Print the version of minikube
+
+
+
+
+
+Installing Chocolatey
+----------------------
+# OPen Install with cmd.exe
+
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+
+
+

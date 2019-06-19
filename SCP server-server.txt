@@ -1,0 +1,13 @@
+COPY FROM one SERVER to ANOTHER SERVER
+---------------------------------------
+
+$ scp -P 22 naga12devops@35.244.17.170 /home/naga12devops/nag.tar naga12devops@35.209.160.213:/home/naga12devop 
+
+Explanation:
+
+scp	: Secure shell
+-P	: port
+22	: port no
+nag.tar	: file that we wanted to send 
+host_local-server-username@35.244.17.170 /home/naga12devops/nag.tar  : local machine or host 
+target-server-username@35.209.160.213:/home/naga12devop 	     : Target machine

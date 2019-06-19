@@ -1,0 +1,23 @@
+1  yum install update
+    2  yum repolist
+    3  ifconfig
+    4  df -h
+    5  cd /run/media/root/RHEL-7.3\ Server.x86_64/Packages/
+    6  rpm -ivh vsftpd-3.0.2-21.el7.x86_64.rpm 
+    7  rpm -ivh createrepo-0.9.9-26.el7.noarch.rpm 
+    8  cp -rvpf /run/media/root/RHEL-7.3\ Server.x86_64/* /var/ftp/pub/
+    9  cd /var/ftp/pub/
+   10  ls -lt
+   11  cd
+   12  cd /etc/yum.repos.d/
+   13  vi server.repo
+   14  yum clean all
+   15  yum repolist
+   16  firewall-cmd --permanent --zone=public --list-all
+   17  firewall-cmd --permanent --zone=public --add-service=ftp
+   18  firewall-cmd --reload
+   19  systemctl start vsftpd
+   20  systemctl status vsftpd
+   21  systemctl enable vsftpd
+   22  yum install ntp* -y
+   23  history >  /home/yum-confugure

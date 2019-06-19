@@ -1,0 +1,15 @@
+C:\Users\Chandu\AppData\Local\Google\Cloud SDK>
+
+$ gsutil mb -c regional -l asia-east1 -p analog-mix-243109 gs://nandu-bucket
+
+Creating gs://nandu-bucket/...
+$ gsutil ls -r
+$ gsutil rm -r nagg
+
+
+
+
+
+
+source:
+https://www.youtube.com/watch?v=TVRsSiGJQvk

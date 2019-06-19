@@ -1,0 +1,77 @@
+remote linux server connecton congig
+-------------------------------------
+
+STEP 1:  SSH_Key
+______
+
+Target machine must have passwd authontication ( AWS )
+
+$ vim /etc/ssh/sshd_config    ( set PasswordAthontication yes )
+$ service restart sshd.service  ( Restart sshd service must )
+$ passwd ec2-user            ( enter passwd any min 8 chars) 
+
+
+
+COnnection Machine   
+
+ $ sudo ssh naga12devops@35.238.11.229  ( username@machine_IP)
+ $ enter passwd of target machine
+
+
+STEP 2: Using PEM
+_______
+
+
+Target machine must have passwd authontication ( AWS )
+
+$ vim /etc/ssh/sshd_config    ( set PasswordAthontication yes )
+$ service restart sshd.service  ( Restart sshd service must )
+$ passwd ec2-user            ( enter passwd any min 8 chars) 
+
+
+COnnection Machine   
+
+ $ sudo ssh -i test.pem ec2-user@13.126.175.1989  ( username@machine_IP) | ( test.pem must be in server location )
+ $ enter passwd of target machine
+
+
+STEP : Using 
+_______
+
+Target machine must have passwd authontication ( AWS )
+
+$ vim /etc/ssh/sshd_config    ( set PasswordAthontication yes )
+$ service restart sshd.service  ( Restart sshd service must )
+$ passwd ec2-user            ( enter passwd any min 8 chars) 
+
+
+COnnection Machine   
+
+ $ ssh-copy-id ec2-user@13.126.175.198
+ $ sudo ssh naga12devops@35.238.11.229  ( username@machine_IP)
+ $ enter passwd of target machine
+
+
+
+
+
+
+history
+____________
+
+ 3  vim test.pem
+    4  ssh -i test.pem ec2-user@13.233.117.44
+    5  chmod test.pem
+    6  chmod 400 test.pem
+    7  ssh -i test.pem ec2-user@13.233.117.44
+    8  vim /etc/ssh/
+    9  cd /etc/ssh
+   10  ls
+   11  ll
+   12  vim sshd_config
+   13  sudo vim sshd_config
+   14  passwd naga12devops
+   15  sudo passwd naga12devops
+   16  service sshd restart
+   17  sudo service sshd restart
+

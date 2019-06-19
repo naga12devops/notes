@@ -1,0 +1,10 @@
+1.Autoscaling dynamically creates or deletes VMs to meet the group target 
+2.Autoscaling adds or removes instances in the group to maintain this level of CPU usage on each instance
+3. COOl DOWN TIME:
+   	How long to wait before collecting information from a new instance. 
+	This should be at least the time it takes to initialize the instance. 
+	To find the minimum, create an instance from the same image and note how long it takes to start.
+4.AUTO HEALING: 
+	Autohealing allows recreating VM instances when needed. 
+	You can use a health check to recreate a VM instance if the health check finds it unresponsive. 
+	If you don't select a health check, Compute Engine will recreate VM instances only when they're not running. 
