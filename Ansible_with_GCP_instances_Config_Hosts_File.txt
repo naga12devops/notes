@@ -6,15 +6,52 @@ take 1 as master
 Steps: install Ansible on Master $ sudo yum update && sudo yum install ansible -y
 ansible by default installed in location 
 /etc/ansible ( ansible.cfg,hosts, roles)
+
+Step 1: Generate the ssh key on the master node:
+
+          root@master:~# ssh-keygen -t rsa -C "master-gcp"
+          Then copy your public key to the servers with ssh-copy-id:
+
+root@master:~# ssh-copy-id user@node1-ip          **Note** Node1_Server Must has Password Authentication  
+root@master:~# ssh-copy-id user@node2-ip          **Note** Node2_Server Must has Password Authentication
+          -----after run --> root@master:~# ssh-copy-id user@node2-ip  --> Enter Passwd of node2
+Now you can test the connectivity:
+
+
+# GCP_ANSIBLE_ONFIG
+# _____________________________
 open hosts file $ vi hosts
-[webservers]
+[webservers]                  # GCP Instances
 localhost ansible_connection=local
 34.93.225.194 ansible_ssh_user=naga12devops ansible_ssh_pass=Naga1212
 34.93.205.222 ansible_ssh_user=naga12devops ansible_ssh_pass=Naga1212
 
+----OR follow ------LIke Bellow---
+localhost ansible_connection=local
+34.93.225.194 ansible_ssh_user=naga12devops 
+34.93.205.222 ansible_ssh_user=naga12devops 
+
+# AWS_ANSIBLE_ONFIG
+# _____________________________
+
+[webservers]             # AWS Instances 
+localhost ansible_connection=local
+13.233.7.44 ansible_user=ec2-user ansible_ssh_private_key_file=/etc/ansible/ansible-test.pem
+13.235.83.86 ansible_user=ec2-user ansible_ssh_private_key_file=/etc/ansible/ansible-test.pem
 
 
+
+# AZURE_ANSIBLE_CONFIG
+# ___________________________
+[webservers]
+localhost ansible_connection=local
+52.172.12.21 ansible_user=nareshkurumu
+
+
+
+---------------------------------------
 Generate the ssh key on the master node:
+---------------------------------------
 
 root@master:~# ssh-keygen -t rsa -C "master-gcp"
 Then copy your public key to the servers with ssh-copy-id:
