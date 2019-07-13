@@ -1,0 +1,170 @@
+=====================================
+How to Install Apache on CentOS 7
+=====================================
+
+Prerequisites:
+A CentOS 7 Server Minimal Install
+A RHEL 7 Server Minimal Install
+A CentOS/RHEL 7 system with static IP address
+
+Install Apache Web Server
+1. First update the system software packages to the latest version.
+
+   # yum -y update 
+   # yum install httpd -y
+
+2. Next, install Apache HTTP server from the default software repositories using the YUM package manager as follows.
+
+   # yum install httpd
+
+3. Once Apache web server installed, you can start it first time and enable it to start automatically at system boot.
+
+   # systemctl start httpd
+   # systemctl enable httpd
+   # systemctl status httpd
+
+   Configure firewalld to Allow Apache Traffic
+4. By default, CentOS 7 built-in firewall is set to block Apache traffic. To allow web traffic on Apache, update the system firewall rules to permit inbound packets on HTTP and HTTPS using the commands below.
+
+   # firewall-cmd --zone=public --permanent --add-service=http
+   # firewall-cmd --zone=public --permanent --add-service=https
+   # firewall-cmd --reload
+
+  Test Apache HTTP Server on CentOS 7
+5. Now you can verify Apache server by going to the following URL, a default Apache page will be shown.
+
+   http://SERVER_DOMAIN_NAME_OR_IP eg: open browser and enter http://35.193.92.170/
+
+
+   Configure Name-based Virtual Hosts on CentOS 7
+   This section only useful, if you want to host more than one domain (virtual host) on the same Apache web server. There are many ways to setup a virtual host, but we will explain one of the simplest methods here.
+
+6. First create a vhost.conf file under /etc/httpd/conf.d/ directory to store multiple virtual host configurations.
+
+   # vi /etc/httpd/conf.d/vhost.conf
+
+   Add the following example virtual host directive template for website mytecmint.com, make sure to change the necessary values for your own domain
+
+   NameVirtualHost *:80
+
+   <VirtualHost *:80>
+       ServerAdmin webmaster@ngraaj.com      # mendatary
+       ServerName ngraaj.com			# mendatary
+       ServerAlias www.ngraaj.com		# mendatary
+       DocumentRoot /var/www/html/ngraaj.com/
+       ErrorLog /var/log/httpd/ngraaj.com/error.log
+       CustomLog /var/log/httpd/ngraaj.com/access.log combined
+   </VirtualHost>
+
+   Important: You can add as many as domains to vhost.conf file, just copy the VirtualHost block above and change the values for each domain you add.
+
+7. Now create the directories for mytecmint.com website as referenced in the VirtualHost block above.
+
+   # mkdir -p /var/www/html/ngraaj.com    [Document Root - Add Files]
+   # mkdir -p /var/log/httpd/ngraaj.com   [Log Directory]
+
+8. Create a dummy index.html page under /var/www/html/mytecmint.com.
+
+   # echo "Welcome to My TecMint Website" > /var/www/html/mytecmint.com/index.html
+9. Finally, restart Apache service for the above changes to take effect.
+
+   # systemctl restart httpd.service
+10. Now you can visit mytecmint.com to test the index page created above.
+
+  
+   # open browser and type : http://ngraaj.com
+
+
+if we want to locally o/p on windows cmd--> drivers ---> etc --> hosts 
+
+35.193.92.170 nanda.com www.nanda.com ngraaj.com www.ngraaj.com landing.com www.landing.com meminfo.com www.meminfo.com www.interact.com interact.com vadlamudi.com www.vadlamudi.com
+
+
+-------------------------------------------------------------------------------------------------
+NOTE:
+------
+Apache Important Files and Directoires
+The default server root directory (top level directory containing configuration files): /etc/httpd
+The main Apache configuration file: /etc/httpd/conf/httpd.conf
+Additional configurations can be added in: /etc/httpd/conf.d/
+Apache virtual host configuration file: /etc/httpd/conf.d/vhost.conf
+
+
+
+systemctl restart httpd
+  200  ls
+  201  mv agency.com/ meminfo.com
+  202  ls
+  203  vi /etc/httpd/conf.d/vhost.conf 
+  204  systemctl restart httpd
+  207  cp -r /home/naga12devops/interact.com/ /var/www/html/
+  208  ls
+  209  vi /etc/httpd/conf.d/vhost.conf 
+  210  systemctl restart httpd
+  212  cd /var/www/html/
+  214  mkdir -p vadlamudi.com
+  215  cd vadlamudi.com/
+  216  vim index.html
+  217  cd /etc/httpd/conf.d/vhost.conf 
+  218  cd /etc/httpd/conf.d
+  219  vim vhost.conf 
+  220  systemctl restart httpd
+  221  vim vhost.conf 
+  222  cd /var/www/html/
+  223  ls
+  224  systemctl restart httpd
+  225  cd /etc/
+  226  ls
+  227  vi hosts
+  228  history
+
+
+Configurations for modules: /etc/httpd/conf.modules.d/
+Apache default server document root directory (stores web files): /var/www/html
+
+Apache Server Log & Data
+-------------------------
+
+[root@test-server etc]# cd /var/www/html/
+[root@test-server html]# ls
+error.html  index.html  interact.com  landing.com  meminfo.com  nanda.com  ngraaj.com  vadlamudi.com
+
+Vim /etc/httpd/conf.d/vhost.conf
+----------------------------------
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@nanda.com
+    ServerName nanda.com
+    ServerAlias www.nanda.com
+    DocumentRoot /var/www/html/nanda.com/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@meminfo.com
+    ServerName meminfo.com
+    ServerAlias www.meminfo.com
+    DocumentRoot /var/www/html/meminfo.com/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@landing.com
+    ServerName landing.com
+    ServerAlias www.landing.com
+    DocumentRoot /var/www/html/landing.com/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@interact.com
+    ServerName interact.com
+    ServerAlias www.interact.com
+    DocumentRoot /var/www/html/interact.com/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@vadlamudi.com
+    ServerName vadlamudi.com
+    ServerAlias www.vadlamudi.com
+    DocumentRoot /var/www/html/vadlamudi.com/
+</VirtualHost>
+
+ref: https://www.tecmint.com/install-apache-on-centos-7/
