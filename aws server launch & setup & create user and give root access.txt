@@ -1,0 +1,86 @@
+AMI - ami-08706cb5f68222d09
+----------------------------------------------
+1. Launch Server
+2. connect with pem key
+3. switch to root user 	$ sudo su --
+4. update system	$ yum update -y
+5. Edit sshd_configfile $  vim /etc/ssh/sshd_config  --> PasswordAuthentication yes --> esc+:wq!  
+6. create user 		$ useradd nandu
+			$ passwd nandu     : enter password	: conform password
+6. service sshd restart or systemctl restart sshd
+7. Login server public or private networks
+	Public ip: 	$ ssh nandu@13.233.32.216   	: note: you cannot login server with private ip out of netword
+	Private ip:	$ ssh nandu@172.31.13.230 	: note: you can login server with private network
+8. Add user and give root access
+	1. give root access to user
+	------------------------
+	create user and set password 
+	$ useradd naag	> create user
+	$ passwd naag --> give password
+	$ service sshd restart or systemctl restart sshd
+	$ id naag	-> check id
+	$ more /etc/shadow | grep naag ---> check user created or not
+	check user have root access or not by $ su naag		--> if not allow
+	$visudo  ---> paste this line ---> naag	ALL=(ALL) ALL  --> save and exit
+
+	2. Give root access to user
+	---------------------------
+	create user and add in wheel group by below commands	| note: wheel group should be uncommented in $ visudo file
+	$ useradd naag	> create user
+	$ passwd naag --> give password
+	$ service sshd restart or systemctl restart sshd
+	$ id naag	-> check id
+	$ more /etc/shadow | grep naag ---> check user created or not
+	check user have root access or not by $ su naag		--> if not allow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+history
+____________
+
+ 3  vim test.pem
+    4  ssh -i test.pem ec2-user@13.233.117.44
+    5  chmod test.pem
+    6  chmod 400 test.pem
+    7  ssh -i test.pem ec2-user@13.233.117.44
+    8  vim /etc/ssh/
+    9  cd /etc/ssh
+   10  ls
+   11  ll
+   12  vim sshd_config
+   13  sudo vim sshd_config
+   14  passwd naga12devops
+   15  sudo passwd naga12devops
+   16  service sshd restart
+   17  sudo service sshd restart
